@@ -466,7 +466,7 @@ def _attack(params):
         # any future statistics parsing that requires more output from ab
         # may need this line altered to include other patterns
         params['output_filter_patterns'] = '\n'.join(['Time per request:', 'Requests per second: ', 'Failed requests: ', 'Connect: ', 'Receive: ', 'Length: ', 'Exceptions: ', 'Complete requests: ', 'HTTP/1.1'])
-        benchmark_command = 'ab -v 3 -r -n %(num_requests)s -c %(concurrent_requests)s %(options)s "%(url)s" 2>/dev/null | grep -F "%(output_filter_patterns)s"' % params
+        benchmark_command = 'ab -I -v 3 -r -n %(num_requests)s -c %(concurrent_requests)s %(options)s "%(url)s" 2>/dev/null | grep -F "%(output_filter_patterns)s"' % params
         print(benchmark_command)
         stdin, stdout, stderr = client.exec_command(benchmark_command)
 
